@@ -1,0 +1,84 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        String    @id @default(cuid())
+  role      Role      @default(CUSTOMER)
+  name      String?
+  email     String    @unique
+  phone     String?
+  bookings  Booking[]
+  createdAt DateTime  @default(now())
+}
+
+model Package {
+  id          String    @id @default(cuid())
+  name        String
+  description String
+  hourlyRate  Int
+  minHours    Int       @default(1)
+  bookings    Booking[]
+  createdAt   DateTime  @default(now())
+}
+
+model Addon {
+  id          String        @id @default(cuid())
+  name        String
+  description String?
+  price       Int
+  bookingItems BookingAddon[]
+  createdAt   DateTime      @default(now())
+}
+
+model Booking {
+  id         String         @id @default(cuid())
+  user       User           @relation(fields: [userId], references: [id])
+  userId     String
+  package    Package        @relation(fields: [packageId], references: [id])
+  packageId  String
+  addonItems BookingAddon[]
+  date       DateTime
+  startHour  Int
+  hours      Int
+  status     BookingStatus  @default(PENDING)
+  amountNGN  Int
+  reference  String?
+  invoice    Invoice?
+  createdAt  DateTime       @default(now())
+}
+
+model BookingAddon {
+  id        String  @id @default(cuid())
+  booking   Booking @relation(fields: [bookingId], references: [id])
+  bookingId String
+  addon     Addon   @relation(fields: [addonId], references: [id])
+  addonId   String
+  qty       Int     @default(1)
+}
+
+model Invoice {
+  id        String   @id @default(cuid())
+  booking   Booking  @relation(fields: [bookingId], references: [id])
+  bookingId String   @unique
+  email     String
+  totalNGN  Int
+  sentAt    DateTime?
+  paid      Boolean  @default(false)
+}
+
+enum Role {
+  ADMIN
+  CUSTOMER
+}
+
+enum BookingStatus {
+  PENDING
+  PAID
+  CANCELLED
+}

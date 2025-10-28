@@ -1,0 +1,15 @@
+.brand-h1 {
+  @apply text-4xl font-semibold tracking-tight md:text-6xl;
+}
+
+.brand-h2 {
+  @apply text-3xl font-semibold tracking-tight md:text-4xl;
+}
+
+.brand-h3 {
+  @apply text-2xl font-medium tracking-tight md:text-3xl;
+}
+
+.brand-lead {
+  @apply text-lg text-neutral-600 dark:text-neutral-300 md:text-xl;
+}

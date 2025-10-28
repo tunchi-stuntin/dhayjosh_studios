@@ -1,0 +1,45 @@
+{
+  "name": "dhayjosh-photos",
+  "private": true,
+  "packageManager": "npm@11.4.2",
+  "scripts": {
+    "dev": "next dev",
+    "build": "prisma generate && next build",
+    "start": "next start",
+    "postinstall": "prisma generate",
+    "db:push": "prisma db push",
+    "db:seed": "tsx prisma/seed.ts",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@prisma/client": "5.19.1",
+    "@vercel/analytics": "latest",
+    "axios": "latest",
+    "bcryptjs": "latest",
+    "cloudinary": "latest",
+    "date-fns": "^4.1.0",
+    "framer-motion": "latest",
+    "next": "14.2.5",
+    "next-seo": "latest",
+    "nodemailer": "latest",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "resend": "latest",
+    "tailwindcss": "^3.4.13",
+    "zod": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "@types/nodemailer": "^7.0.3",
+    "@types/react": "latest",
+    "autoprefixer": "latest",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^14.2.5",
+    "postcss": "latest",
+    "prisma": "5.19.1",
+    "tsx": "latest",
+    "turbo": "^2.5.8",
+    "typescript": "5.x"
+  }
+}

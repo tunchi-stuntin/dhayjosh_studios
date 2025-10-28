@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-white text-neutral-900 antialiased dark:bg-neutral-950 dark:text-neutral-100;
+}
+
+a {
+  @apply underline-offset-4 transition-colors;
+}
+
+a:hover {
+  @apply text-neutral-600 dark:text-neutral-300;
+}
+
+button {
+  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-neutral-950;
+}
+
+section {
+  @apply py-20 md:py-28;
+}
